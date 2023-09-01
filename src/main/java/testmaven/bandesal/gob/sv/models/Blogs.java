@@ -29,5 +29,7 @@ public class Blogs {
 	private String title;
 	@Column(name = "description", length = 4000)
 	private String description;
+//	@ManyToMany(mappedBy="blogs")
+//    private List<Readers> readers = new ArrayList<Readers>();
 	
 }

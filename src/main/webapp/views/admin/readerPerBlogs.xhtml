@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/resources/template/Template.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+	<ui:define name="header">
+		<title>Lectores</title>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><h:link value="" outcome="blogs">
+						<span class="fa fa-home"></span>
+					</h:link></li>
+				<li class="active"><h:link value="blogs" outcome="blogs" /></li>
+				<li class="active">Lectores</li>
+			</ol>
+		</div>
+		<!--/.row-->
+		<br></br>
+		<div class="panel panel-info" style="background-color: #FFF">
+
+			<div class="panel-body">
+				<h:form id="form_readerPerBlog">
+					<p:dataTable var="readerPerBlog" id="table_readerPerBlog"
+						sortOrder="descending" value="#{readerPerBlogBean.getAll()}"
+						rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15"
+						emptyMessage="No se encuentran datos">
+
+						<p:column filterBy="#{readerPerBlog.id}" headerText="ID"
+							filterMatchMode="contains" class="col-md-3 col-lg-3"
+							sortBy="#{readerPerBlog.id}">
+							<h:outputText value="#{readerPerBlog.id}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{readerPerBlog.title}" headerText="Titulo"
+							filterMatchMode="contains" class="col-md-6"
+							sortBy="#{readerPerBlog.title}">
+							<h:outputText value="#{readerPerBlog.title}"></h:outputText>
+
+						</p:column>
+<!-- 						<p:column filterBy="#{readerPerBlog.title}" -->
+<!-- 							filterMatchMode="contains" class="col-md-6" -->
+<!-- 							sortBy="#{readerPerBlog.title}" headerText="Lecores"> -->
+<!-- 							<ui:repeat var="item" value="#{readerPerBlog.getAllReaders}"> -->
+<!-- 								<h:outputText value="#{item.name}" /> -->
+<!-- 							</ui:repeat> -->
+
+<!-- 						</p:column> -->
+
+						<!-- 						<p:column filterBy="#{readerPerBlog.name}" headerText="Lectores" -->
+						<!-- 							filterMatchMode="contains" class="col-md-6" -->
+						<!-- 							sortBy="#{readerPerBlog.name}"> -->
+						<!-- 							<h:outputText value="#{readerPerBlog.name}"></h:outputText> -->
+
+						<!-- 						</p:column> -->
+
+					</p:dataTable>
+
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</h:form>
+
+
+
+			</div>
+		</div>
+
+
+	</ui:define>
+
+
+
+	<ui:define name="script">
+
+	</ui:define>
+
+</ui:composition>

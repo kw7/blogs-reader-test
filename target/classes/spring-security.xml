@@ -20,7 +20,7 @@
 		<security:intercept-url pattern="/views/user/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/views/admin/**" access="hasRole('ROLE_ADMIN')" />
 
-		<security:form-login login-page="/login.xhtml" login-processing-url="/j_spring_security_check"
+		<security:form-login login-page="/index.xhtml" login-processing-url="/j_spring_security_check"
 			authentication-success-handler-ref="authSuccessHandler" username-parameter="username" password-parameter="password" />
 
 		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID" />

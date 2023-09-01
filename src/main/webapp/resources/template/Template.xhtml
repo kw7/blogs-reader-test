@@ -41,7 +41,7 @@
                                 <li>
                                     <div class="text-center" style="margin-bottom: -8%">
                                         <h:form id="top_form">
-                                            <p:commandLink action="#{login.logout}">
+                                            <p:commandLink action="#{login.logout()}">
                                                 <i style="color: #000000" class="fa fa-close"></i> <span style="color: #000">Cerrar Sesión</span>
                                             </p:commandLink>
                                         </h:form>
@@ -57,10 +57,7 @@
         
         <div id="sidebar-collapse" class="col-sm-3 col-md-2 col-lg-2 sidebar" >
 
-<!--             <div class="col-sm-12"> -->
-<!--                 <p:graphicImage name="/images/#{c_login_n.compañia_actual.nomlogo}" width="100%" -->
-<!--                                 style="margin-top: 8px;"/> -->
-<!--             </div> -->
+
             <form>
                 <div class="time">
                     <h1>00:00</h1>
