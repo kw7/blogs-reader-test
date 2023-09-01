@@ -1,0 +1,59 @@
+
+#top {
+    position: relative;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+}
+
+.ui-growl-item-container {
+        position:relative;
+        margin:0 0 10px 0;
+        opacity:0.85;
+        filter:alpha(opacity=85);
+}
+
+#tblogin{
+    align-content: center;
+    border-style: double;
+    padding: 15px;
+    
+    
+}
+
+.center_content {
+    position: relative;
+    background-color: white;
+    padding: 0px;
+    padding-left: 0px;
+    height: 80%;
+}   
+
+.ui-icon-agregar{
+    background-image: url("#{resource['images/mas.jpg']}") !important;
+}
+
+.ui-icon-quitar{
+    background-image: url("#{resource['images/menos.jpg']}") !important;
+}
+
+.text_footer_style{
+    font-size: 12px;
+}
+
+.btnquitardetalle{
+    height: 20px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/resources/template/Template.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+	<ui:define name="header">
+		<title>Blogs</title>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><h:link value="" outcome="blogs">
+						<span class="fa fa-home"></span>
+					</h:link></li>
+				<li class="active"><h:link value="blogs" outcome="mn_caja" /></li>
+				<li class="active">Blogs</li>
+			</ol>
+		</div>
+		<!--/.row-->
+		<br></br>
+		<div class="panel panel-info" style="background-color: #FFF">
+			<div class="panel-heading">
+				<h:form id="form_add_blog">
+					<div class="col-sm-12 col-md-12 col-lg-12 text-right">
+						<p:commandButton icon="fa fa-plus" update=":form_nuevo_blogs"
+							style="width: 180px;" class="btn btn-primary form-control"
+							value="Nuevo" oncomplete="PF('dlg_nuevo_blogs').show();" />
+						<span>&ensp;</span>
+					</div>
+				</h:form>
+				<br></br>
+			</div>
+			<div class="panel-body">
+				<h:form id="form_blogs">
+					<p:dataTable var="blogs" id="table_blogs" sortOrder="descending"
+						value="#{blogsBean.getAllBlogs()}" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15"
+						emptyMessage="No se encuentran datos">
+
+						<p:column filterBy="#{blogs.title}" headerText="Titulo de blogs"
+							filterMatchMode="contains" class="col-md-3 col-lg-3"
+							sortBy="#{blogs.title}">
+							<h:outputText value="#{blogs.title}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{blogs.description}" headerText="Descripcion"
+							filterMatchMode="contains" class="col-md-6"
+							sortBy="#{blogs.description}">
+							<h:outputText value="#{blogs.description}"></h:outputText>
+
+						</p:column>
+
+
+						<p:column headerText="Acciones">
+							<p:commandButton icon="fa fa-pencil" id="editar"
+								actionListener="#{blogsBean.showBlogs(blogs)}"
+								update=":form_editar_blogs  "
+								oncomplete="PF('dlg_editar_blogs').show();" />
+							<p:tooltip for="editar" value="Editar" />
+							<p:commandButton icon="fa fa-trash" id="eliminar"
+								style="color: red !important;"
+								onclick="PF('dgEliminar').show();">
+								<f:setPropertyActionListener value="#{blogs}"
+									target="#{blogsBean.slcBlog}" />
+							</p:commandButton>
+							<p:tooltip for="eliminar" value="Eliminar" />
+						</p:column>
+					</p:dataTable>
+					<p:confirmDialog closable="false"
+						message="Desea eliminar el registro?" widgetVar="dgEliminar"
+						showEffect="fade" hideEffect="fade">
+						<p:commandButton value="si"
+							actionListener="#{blogsBean.eliminar()}" update=":form_blogs:table_blogs"
+							icon="ui-icon-check" oncomplete="PF('dgEliminar').hide();" />
+						<p:commandButton value="No" icon="ui-icon-close"
+							oncomplete="PF('dgEliminar').hide();"
+							actionListener="#{blogsBean.cancelar()}" />
+					</p:confirmDialog>
+<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+				</h:form>
+
+
+				<p:dialog id="dlg_nuevo_blogs" width="500" height="200"
+					header="Nuevo blogs" widgetVar="dlg_nuevo_blogs" modal="true"
+					position="center center"
+					onShow="PF('dlg_nuevo_blogs').initPosition()">
+					<p:ajax event="close" update="form_nuevo_blogs" resetValues="true"
+						listener="#{blogsBean.cancelar()}" />
+					<h:form id="form_nuevo_blogs">
+
+						<p:growl id="nuevoblogs" />
+
+						<p:panelGrid id="pgblogs" columns="2">
+							<p:column colspan="1">
+								<p:outputLabel value="Titulo blog" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{blogsBean.blogs.title}" />
+							</p:column>
+							<p:column colspan="1">
+								<p:outputLabel value="Descripcion" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{blogsBean.blogs.description}" />
+							</p:column>
+
+							<p:column colspan="4">
+								<p:commandButton actionListener="#{blogsBean.guardar()}"
+									update="@form,:form_blogs:table_blogs" value="Guardar" />
+							</p:column>
+						</p:panelGrid>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</h:form>
+				</p:dialog>
+
+				<p:dialog id="dlg_editar_blogs" width="500" height="200"
+					header="Editar blogs" widgetVar="dlg_editar_blogs" modal="true"
+					position="center center"
+					onShow="PF('dlg_editar_blogs').initPosition()">
+					<p:ajax event="close" update="form_editar_blogs" resetValues="true"
+						listener="#{blogsBean.cancelar()}" />
+					<h:form id="form_editar_blogs">
+
+						<p:growl id="editarblogs" />
+
+						<p:panelGrid id="pgblogs" columns="2">
+							<p:column colspan="1">
+								<p:outputLabel value="Titulo blog" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{blogsBean.slcBlog.title}" />
+							</p:column>
+							<p:column colspan="1">
+								<p:outputLabel value="Descripcion" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{blogsBean.slcBlog.description}" />
+							</p:column>
+
+							<p:column colspan="4">
+								<p:commandButton actionListener="#{blogsBean.guardar()}"
+									update="@form,:form_blogs:table_blogs" value="Guardar" />
+							</p:column>
+						</p:panelGrid>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</div>
+
+
+	</ui:define>
+
+
+
+	<ui:define name="script">
+
+	</ui:define>
+
+</ui:composition>

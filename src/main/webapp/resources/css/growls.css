@@ -1,0 +1,56 @@
+.ui-growl-item-container p {    
+    color: black !important;
+}
+
+.ui-growl{
+    position: fixed !important;
+    top: 85% !important;
+    left: 75% !important;
+    width: 25% !important;
+}
+
+.ui-growl-item-container{
+    /*background: -moz-linear-gradient(top, #7db9e8 100%, #1e5799 100%, #1e5799 100%, #207cca 100%);  FF3.6-15 */
+    /*background: linear-gradient(to bottom, #7db9e8 100%,#1e5799 100%,#1e5799 100%,#207cca 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: #7db9e8 !important; /* Old browsers */
+    background: -webkit-linear-gradient(top, #7db9e8 100%,#1e5799 100%,#1e5799 100%,#207cca 100%) !important; /* Chrome10-25,Safari5.1-6 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#207cca',GradientType=0) !important;
+    width: 90% !important;
+}
+
+.ui-growl{
+}
+.ui-growl-message {
+    padding-left: 10px !important;
+    width: 250px !important;
+    float: left !important;
+}
+
+.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus{
+    border:1px solid #fb9772;
+    font-weight:bold;
+    color:#1d5987;
+}
+
+.col-xs-11.col-sm-4.alert.alert-danger{
+    background-color: #FF0000;
+    font-size: medium;
+    color: #ffffff;
+}
+.col-xs-11.col-sm-4.alert.alert-info{
+    background-color: #5cb85c;
+    font-size: medium;
+    color: #ffffff;
+
+}
+.col-xs-11.col-sm-4.alert.alert-success{
+    background-color:  #5cb85c;
+    font-size: medium;
+    color: #ffffff;
+}
+
+.col-xs-11.col-sm-4.alert.alert-warning{
+    background-color: #db5c13;
+    font-size: medium;
+    color: #ffffff;
+}

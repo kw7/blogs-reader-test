@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Acceso</title>
+</h:head>
+
+<h:body>
+
+	<f:phaseListener
+		type="testmaven.bandesal.gob.sv.controller.LoginManageBean" />
+
+	<h:form id="loginForm" prependId="false">
+
+		<p:panel>
+
+
+			<f:facet name="header">Iniciar sesion</f:facet>
+
+			<p:panelGrid columns="3">
+
+				<p:outputLabel for="username" value="Usuario:" />
+				<p:inputText id="username" required="true"
+					requiredMessage="Debe ingresar un Usuario" />
+				<p:message for="username" />
+
+				<p:outputLabel for="password" value="Contraseña:" />
+				<p:password id="password" required="true"
+					requiredMessage="Debe ingresar una Contraseña" />
+				<p:message for="password" />
+
+			</p:panelGrid>
+
+			<f:facet name="footer">
+
+				<p:commandButton value="Ingresar" action="#{login.doLogin}"
+					ajax="false" />
+				<p:commandButton value="Cancelar" process="@this" type="reset" />
+
+				<p:messages id="mensajes" autoUpdate="true" showSummary="true"
+					showDetail="true" closable="true" />
+
+			</f:facet>
+
+		</p:panel>
+
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+
+	</h:form>
+
+
+</h:body>
+
+</html>

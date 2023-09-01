@@ -1,0 +1,59 @@
+.keypad-key{
+    font-size: 3em !important;
+    width: 70px !important;
+}
+
+.keypad-close {
+   font-size: 3em !important;
+   width:240px !important;
+}
+.keypad-clear {
+   font-size: 3em !important;
+   width:240px !important;
+}
+
+.keypad-back {
+   font-size: 3em !important;
+   width:240px !important;
+}
+
+.opciones span.ui-button-text.ui-c{
+    width: 550px;
+    font-size: 2em;
+}
+
+.opcionespago span.ui-button-text.ui-c{
+    width: 120px;
+    font-size: 1em;
+}
+
+.listaa.ui-panelgrid>*>tr,
+.listaa.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+    margin: 0 auto;
+}
+
+
+
+.tipopago div.ui-radiobutton.ui-widget{
+    margin-left: 60px;
+  
+}
+
+.tipopago label{
+    margin-left: 10px;
+    font-size: 1.5em
+}
+
+.ui-state-focus {
+    border-color: red !important;
+}
+
+.ui-selectonemenu-items{
+    font-size: 1.2em !important;
+}
+
+.ui-selectonemenu-items-wrapper{
+    height: 400px !important;
+}
+

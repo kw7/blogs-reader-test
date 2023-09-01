@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:security="http://www.springframework.org/schema/security"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/security
+                http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<context:component-scan base-package="testmaven.bandesal.gob.sv" />
+
+	<bean id="authSuccessHandler" class="testmaven.bandesal.gob.sv.config.AuthSuccessHandler" />
+
+	<security:http auto-config="true">
+
+		<security:access-denied-handler error-page="/accesDenied.xhtml" />
+
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/views/user/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/views/admin/**" access="hasRole('ROLE_ADMIN')" />
+
+		<security:form-login login-page="/login.xhtml" login-processing-url="/j_spring_security_check"
+			authentication-success-handler-ref="authSuccessHandler" username-parameter="username" password-parameter="password" />
+
+		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID" />
+
+		<security:csrf />
+
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="loginService">
+			<security:password-encoder hash="bcrypt" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

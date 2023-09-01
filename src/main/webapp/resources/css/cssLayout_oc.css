@@ -1,0 +1,117 @@
+
+#top {
+    position: relative;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+}
+
+.pgacciones.ui-panelgrid>*>tr,
+.pgacciones.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+    margin: 0 auto;
+}
+
+
+
+#menuacciones, #menuprincipal {
+    border: none;
+    margin: 0 auto;
+    width: 100%; 
+    height: 100%;
+    text-align: center;
+}
+
+#tblogin{
+    align-content: center;
+    border-style: double;
+    padding: 15px;
+}
+
+.header{
+    text-align: center;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.ui-selectoneradio label{ 
+    padding-right: 50px !important;
+    padding-left: 5px !important;
+}
+
+
+
+
+.ui-growl-image-info{background-position:0 -264px;}
+.ui-growl-image-warn{background-position:0 -264px;}
+.ui-growl-image-error{background-position:0 -264px;}
+.ui-growl-image-fatal{background-position:0 -264px;}
+
+.ui-growl-item-container{
+    position:relative;
+    margin:0 0 10px 0;
+    opacity:1;
+    filter:alpha(opacity=100);
+    font-size: 1.5em !important;
+    font-weight: bolder !important;
+    background-color:  	 #595959 !important;
+    border-color: white !important;   
+}
+
+.ui-growl{
+    position:absolute;
+    top: 110px;
+}
+
+.center_content {
+    position: relative;
+    background-color: white;
+    padding: 0px;
+    padding-left: 0px;
+    height: 80%;
+}   
+
+.ui-state-focus {
+border-color: red !important;
+}
+
+.ui-inputfield.ui-state-focus, .ui-widget-content .ui-inputfield.ui-state-focus, .ui-widget-header .ui-inputfield.ui-state-focus
+{border-color:blue;}
+
+.text_footer_style{
+    font-size: 12px;
+}
+
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#aoe{
+    background-image:url(../images/buscar.png); 
+    background-repeat: no-repeat; 
+    background-position: 2px 3px;
+}
+
+.ui-botonsalir{
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+.forty-percent {
+     width: 485px;
+}
+
+.columnwidths {
+     width: 300px;
+}

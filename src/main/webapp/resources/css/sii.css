@@ -1,0 +1,42 @@
+/* 
+    Created on : 09-20-2017, 11:05:00 AM
+    Author     : Omar
+*/
+@media (max-width:992px){
+    .col-sm-12{
+        text-align:left;
+    }
+}
+
+.ui-autocomplete-input{
+    width: 90%;
+}
+.alinear-izquierda{
+    text-align: left !important;
+}
+.alinear-derecha{
+    text-align: right !important;
+}
+.alinear-centro{
+    text-align: center !important;
+}
+.companyHeaderGrid.ui-panelgrid>*>tr,
+.companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.ui-radiobutton-icon{
+    margin-left: -0.5px !important;
+    margin-top: -1px !important;
+}
+
+.select{
+    color: black !important;
+}
+.ui-dialog{
+    top: 10% !important;
+}
+.ui-confirm-dialog{
+    top: 20% !important;
+}
+

@@ -1,0 +1,7 @@
+.ui-selectonemenu{
+    padding-right: 25px !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger{
+    width: 25px !important;
+}

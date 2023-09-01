@@ -1,0 +1,85 @@
+.keypad-key{
+    font-size: 3em !important;
+    width: 70px !important;
+}
+
+.keypad-close {
+   font-size: 3em !important;
+   width:240px !important;
+}
+.keypad-clear {
+   font-size: 3em !important;
+   width:240px !important;
+}
+
+.keypad-back {
+   font-size: 3em !important;
+   width:240px !important;
+}
+
+.opciones span.ui-button-text.ui-c{
+    width: 550px;
+    font-size: 2em;
+}
+
+.opcionespago span.ui-button-text.ui-c{
+    width: 120px;
+    font-size: 1em;
+}
+
+.listaa.ui-panelgrid>*>tr,
+.listaa.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+    margin: 0 auto;
+}
+
+
+
+.tipopago div.ui-radiobutton.ui-widget{
+    margin-left: 60px;
+  
+}
+
+.tipopago label{
+    margin-left: 10px;
+    font-size: 1.5em
+}
+
+.ui-growl-image-info{background-position:0 -264px;}
+.ui-growl-image-warn{background-position:0 -264px;}
+.ui-growl-image-error{background-position:0 -264px;}
+.ui-growl-image-fatal{background-position:0 -264px;}
+
+.ui-growl-message p {
+	font-weight: normal;
+        color: #ffffff;
+}
+
+.ui-growl{
+    position: fixed !important;
+    top: 80% !important;
+    left: 75% !important;
+    background-color: #a94442 !important;
+    
+}
+.ui-botonsalir{
+    float: right;
+    padding-top: 60px;
+    padding-right: 10px;
+    bottom: 10px; 
+    right: 10px
+}
+
+
+.ui-state-focus {
+    border-color: red !important;
+}
+
+.ui-selectonemenu-items{
+    font-size: 1.2em !important;
+}
+
+.ui-selectonemenu-items-wrapper{
+    height: 400px !important;
+}
+

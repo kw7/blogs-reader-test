@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/resources/template/Template.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+	<ui:define name="header">
+		<title>Lectores</title>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><h:link value="" outcome="blogs">
+						<span class="fa fa-home"></span>
+					</h:link></li>
+				<li class="active"><h:link value="blogs" outcome="blogs" /></li>
+				<li class="active">Lectores</li>
+			</ol>
+		</div>
+		<!--/.row-->
+		<br></br>
+		<div class="panel panel-info" style="background-color: #FFF">
+			<div class="panel-heading">
+				<h:form id="form_add_reader">
+					<div class="col-sm-12 col-md-12 col-lg-12 text-right">
+						<p:commandButton icon="fa fa-plus" update=":form_nuevo_reader"
+							style="width: 180px;" class="btn btn-primary form-control"
+							value="Nuevo" oncomplete="PF('dlg_nuevo_reader').show();" />
+						<span>&ensp;</span>
+					</div>
+				</h:form>
+				<br></br>
+			</div>
+			<div class="panel-body">
+				<h:form id="form_reader">
+					<p:dataTable var="reader" id="table_reader" sortOrder="descending"
+						value="#{readerBean.getAllReaders()}" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15"
+						emptyMessage="No se encuentran datos">
+
+						<p:column filterBy="#{reader.id}" headerText="ID"
+							filterMatchMode="contains" class="col-md-3 col-lg-3"
+							sortBy="#{reader.id}">
+							<h:outputText value="#{reader.id}"></h:outputText>
+						</p:column>
+
+						<p:column filterBy="#{reader.name}" headerText="Nombre"
+							filterMatchMode="contains" class="col-md-6"
+							sortBy="#{reader.name}">
+							<h:outputText value="#{reader.name}"></h:outputText>
+
+						</p:column>
+
+
+						<p:column headerText="Acciones">
+							<p:commandButton icon="fa fa-pencil" id="editar"
+								actionListener="#{readerBean.showReader(reader)}"
+								update=":form_editar_reader  "
+								oncomplete="PF('dlg_editar_reader').show();" />
+							<p:tooltip for="editar" value="Editar" />
+							<p:commandButton icon="fa fa-trash" id="eliminar"
+								style="color: red !important;"
+								onclick="PF('dgEliminar').show();">
+								<f:setPropertyActionListener value="#{reader}"
+									target="#{readerBean.slcReaders}" />
+							</p:commandButton>
+							<p:tooltip for="eliminar" value="Eliminar" />
+						</p:column>
+					</p:dataTable>
+					<p:confirmDialog closable="false"
+						message="Desea eliminar el registro?" widgetVar="dgEliminar"
+						showEffect="fade" hideEffect="fade">
+						<p:commandButton value="si"
+							actionListener="#{readerBean.eliminar()}"
+							update=":form_reader:table_reader" icon="ui-icon-check"
+							oncomplete="PF('dgEliminar').hide();" />
+						<p:commandButton value="No" icon="ui-icon-close"
+							oncomplete="PF('dgEliminar').hide();"
+							actionListener="#{readerBean.cancelar()}" />
+					</p:confirmDialog>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</h:form>
+				<p:dialog id="dlg_nuevo_reader" width="500" height="200"
+					header="Nuevo lector" widgetVar="dlg_nuevo_reader" modal="true"
+					position="center center"
+					onShow="PF('dlg_nuevo_reader').initPosition()">
+
+					<h:form id="form_nuevo_reader">
+
+						<p:growl id="nuevoreader" />
+
+						<p:panelGrid id="pgreader" columns="2">
+
+							<p:column colspan="1">
+								<p:outputLabel value="Nombre" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{readerBean.readers.name}" />
+							</p:column>
+							<p:column colspan="1">
+								<p:outputLabel value="Blogs" />
+							</p:column>
+							<p:column colspan="1">
+								<p:selectManyMenu value="#{readerBean.selectedListBlogs}"
+									converter="#{blogConverter}" var="ps" filter="true"
+									filterMatchMode="contains" showCheckbox="true"
+									style="width:300px;">
+									<f:selectItems value="#{readerBean.getAllBlogs()}" var="bl"
+										itemLabel="#{bl.title}" itemValue="#{bl}" />
+									<p:column>
+										<h:outputText value="#{ps.title}" />
+									</p:column>
+								</p:selectManyMenu>
+							</p:column>
+
+							<p:column colspan="4">
+								<p:commandButton actionListener="#{readerBean.save()}"
+									update="@form,:form_reader:table_reader" value="Guardar" />
+							</p:column>
+
+						</p:panelGrid>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</h:form>
+
+				</p:dialog>
+
+				<p:dialog id="dlg_editar_reader" width="500" height="200"
+					header="Editar lector" widgetVar="dlg_editar_reader" modal="true"
+					position="center center"
+					onShow="PF('dlg_editar_reader').initPosition()">
+					<p:ajax event="close" update="form_editar_reader"
+						resetValues="true" listener="#{readerBean.cancelar()}" />
+					<h:form id="form_editar_reader">
+
+						<p:growl id="editarreader" />
+
+						<p:panelGrid id="pgreader" columns="2">
+							<p:column colspan="1">
+								<p:outputLabel value="nombre" />
+							</p:column>
+							<p:column colspan="1">
+								<p:inputText value="#{readerBean.slcReaders.name}" />
+							</p:column>
+							<p:column colspan="1">
+								<p:outputLabel value="Blogs" />
+							</p:column>
+							<p:column colspan="1">
+								<p:selectManyMenu value="#{readerBean.slcReaders.blogs}"
+									converter="#{blogConverter}" var="ps" filter="true"
+									filterMatchMode="contains" showCheckbox="true"
+									style="width:300px;">
+									<f:selectItems value="#{readerBean.getAllBlogs()}" var="bl"
+										itemLabel="#{bl.title}" itemValue="#{bl}" />
+									<p:column>
+										<h:outputText value="#{ps.title}" />
+									</p:column>
+								</p:selectManyMenu>
+							</p:column>
+
+							<p:column colspan="4">
+								<p:commandButton actionListener="#{readerBean.save()}"
+									update="@form,:form_reader:table_reader" value="Guardar" />
+							</p:column>
+						</p:panelGrid>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</div>
+
+
+	</ui:define>
+
+
+
+	<ui:define name="script">
+
+	</ui:define>
+
+</ui:composition>
